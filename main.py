@@ -68,7 +68,7 @@ def send_message():
 
             # Update button label with progress
             send_button.config(text=f"Sending ({i+1}/{spam_count})")
-            time.sleep(0.2)  # slight delay to reduce risk of rate limiting
+            time.sleep(0.01)
 
         # Reset button
         send_button.config(text="Send", state=tk.NORMAL)
@@ -77,10 +77,15 @@ def send_message():
 
 # GUI Setup
 root = tk.Tk()
-root.title("Discord Webhook Spammer")
+root.title("Demi's Discord Webhook Spammer")
 root.geometry("400x360")
 root.configure(bg="#1e1e1e")
 root.eval('tk::PlaceWindow . center')
+
+# Set window icon if icon.ico exists
+icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
+if os.path.exists(icon_path):
+    root.iconbitmap(icon_path)
 
 # Font fallback
 def font_try(font_name):
@@ -89,7 +94,7 @@ def font_try(font_name):
     except:
         return ("Courier New", 10)
 
-font = font_try("Source Code Pro")  # Roboto Mono if preferred
+font = font_try("Source Code Pro")
 
 # Labels and input fields
 def create_label(text, row):
